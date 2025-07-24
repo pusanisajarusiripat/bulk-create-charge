@@ -73,4 +73,4 @@ gem "fabrication"
 
 gem "redis", "~> 4.2"
 
-gem 'dotenv-rails'
+gem "dotenv-rails"
