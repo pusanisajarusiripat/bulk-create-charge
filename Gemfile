@@ -63,12 +63,12 @@ group :test do
 end
 
 # for background job processing.
-gem 'sidekiq'
+gem "sidekiq"
 
 # for writing test.
 gem "minitest-rails", "~> 7.2.0"
 
 # for defining Test data.
-gem 'fabrication'
+gem "fabrication"
 
-gem 'redis', '~> 4.2'
+gem "redis", "~> 4.2"
