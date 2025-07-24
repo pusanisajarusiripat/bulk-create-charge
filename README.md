@@ -6,8 +6,15 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
+- Rails (7.2)
+- Ruby (3.3)
 
-* System dependencies
+* Tools
+- Sidekiq for Background Job Processing
+- Minitest for Unit Testing
+- Fabrication for Unit Testing
+
+<!-- * System dependencies
 
 * Configuration
 
@@ -21,4 +28,5 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* ... -->
+
