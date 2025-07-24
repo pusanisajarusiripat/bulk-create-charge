@@ -72,3 +72,5 @@ gem "minitest-rails", "~> 7.2.0"
 gem "fabrication"
 
 gem "redis", "~> 4.2"
+
+gem "dotenv-rails"
