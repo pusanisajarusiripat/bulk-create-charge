@@ -1,33 +1,41 @@
-# README
+### Prerequisites
+  * **Ruby**: Version 3.3.x
+  * **Rails**: Version 7.2.x
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Installation
 
-Things you may want to cover:
+1.  **Clone the repository:**
 
-* Ruby version
-- Rails (7.2)
-- Ruby (3.3)
+    ```bash
+    git clone https://github.com/pusanisajarusiripat/bulk-create-charge.git
+    cd bulk-create-charge
+    ```
 
-* Tools
-- Sidekiq for Background Job Processing
-- Minitest for Unit Testing
-- Fabrication for Unit Testing
+2.  **Install dependencies:**
 
+    ```bash
+    bundle install
+    ```
 
-<!-- * System dependencies
+3.  **Set up the database:**
 
-* Configuration
+    ```bash
+    rails db:create
+    rails db:migrate
+    rails db:seed
+    ```
 
-* Database creation
+4.  **Start the Rails server:**
 
-* Database initialization
+    ```bash
+    rails s
+    ```
 
-* How to run the test suite
+    The application should now be accessible at `http://localhost:3000`.
 
-* Services (job queues, cache servers, search engines, etc.)
+## Tools & Libraries
 
-* Deployment instructions
-
-* ... -->
+  * **Sidekiq**: Used for efficient background job processing.
+  * **Minitest**: The testing framework for unit tests.
+  * **Fabrication**: A library for creating test data (fixtures/factories) in tests.
 
