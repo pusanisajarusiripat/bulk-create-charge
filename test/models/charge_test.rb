@@ -1,7 +1,8 @@
 require "test_helper"
 
-describe Charge do
-  # it "does a thing" do
-  #   value(1+1).must_equal 2
+class ChargeTest < ActiveSupport::TestCase
+  # test "should be valid" do
+  #   charge = Charge.new
+  #   assert charge.valid?
   # end
 end

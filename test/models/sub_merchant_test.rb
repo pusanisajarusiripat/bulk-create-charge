@@ -1,7 +1,9 @@
 require "test_helper"
 
-describe SubMerchant do
-  # it "does a thing" do
-  #   value(1+1).must_equal 2
+class SubMerchantTest < ActiveSupport::TestCase
+  # Add your tests here
+  # test "should be valid" do
+  #   sub_merchant = SubMerchant.new
+  #   assert sub_merchant.valid?
   # end
 end
