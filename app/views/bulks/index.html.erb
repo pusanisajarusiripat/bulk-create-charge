@@ -1,1 +1,35 @@
-<h1>Let's Create Charges!</h1>
+<h1>Bulks</h1>
+<%= link_to "Import new bulk", new_bulk_path, class: "btn btn-secondary" %>
+
+<table class="bulk-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Status</th>
+      <th>Amount of Charges</th>
+      <th>Created At</th>
+      <th>File</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bulks.each do |bulk| %>
+      <tr>
+        <td><%= bulk.id %></td>
+        <td><%= bulk.status %></td>
+        <td><%= bulk.amount_of_charges %></td>
+        <td><%= bulk.created_at.in_time_zone("Bangkok").strftime("%Y-%m-%d %H:%M") %></td>
+        <td>
+          <% if bulk.file.attached? %>
+            <%= link_to "Download CSV", rails_blob_path(bulk.file, disposition: "attachment"), target: "_blank" %>
+          <% else %>
+            No file
+          <% end %>
+        </td>
+        <td>
+          <%= link_to "Show", bulk_path(bulk) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
