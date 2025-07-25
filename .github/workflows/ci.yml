@@ -55,6 +55,9 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    env:
+      BULK_AUTH_USER: ${{ secrets.BULK_AUTH_USER }}
+      BULK_AUTH_PASSWORD: ${{ secrets.BULK_AUTH_PASSWORD }}
 
     # services:
     #  redis:
