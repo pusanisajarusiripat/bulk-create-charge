@@ -1,0 +1,31 @@
+<%= link_to "Back", "javascript:history.back()", class: "btn btn-secondary" %>
+<h1>Bulk Import Details </h1>
+<% if @bulk.file.attached? %>
+<h2>Bulk Id: <%= @bulk.id %> </h2>
+<table class="bulk-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Charge Id</th>
+      <th>Currency</th>
+      <th>Amount</th>
+      <th>Status</th>
+      <th>Created At</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bulk.charges.each do |charge| %>
+      <tr>
+        <td><%= charge.id %></td>
+        <td><%= charge.charge_id %></td>
+        <td><%= charge.currency %></td>
+        <td><%= charge.amount %></td>
+        <td><%= charge.status %></td>
+        <td><%= charge.created_at.in_time_zone("Bangkok").strftime("%Y-%m-%d %H:%M") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% end %>

@@ -8,3 +8,36 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+ .bulk-table th, .bulk-table td {
+  padding: 18px 24px;
+  text-align: left;
+}
+
+.bulk-table tr {
+  border-bottom: 2px solid #eee;
+}
+
+.bulk-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+
+.btn.btn-secondary {
+  background-color: #999da0;
+  color: #fff;
+  padding: 5px 6px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: inline-block;
+}
+
+.btn.btn-secondary:hover {
+  background-color: #193550;
+  color: #fff;
+}
