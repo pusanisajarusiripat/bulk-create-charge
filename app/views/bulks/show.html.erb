@@ -11,7 +11,7 @@
       <th>Amount</th>
       <th>Status</th>
       <th>Created At</th>
-      <th>Actions</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -23,6 +23,11 @@
         <td><%= charge.amount %></td>
         <td><%= charge.status %></td>
         <td><%= charge.created_at.in_time_zone("Bangkok").strftime("%Y-%m-%d %H:%M") %></td>
+        <td>
+          <%= link_to "Delete", charge_path(charge), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+              } %></td>
       </tr>
     <% end %>
   </tbody>

@@ -9,7 +9,7 @@
       <th>Amount of Charges</th>
       <th>Created At</th>
       <th>File</th>
-      <th>Actions</th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody>
@@ -27,7 +27,11 @@
           <% end %>
         </td>
         <td>
-          <%= link_to "Show", bulk_path(bulk) %>
+          <%= link_to "Show", bulk_path(bulk) %><br>
+          <%= link_to "Delete", bulk_path(bulk), data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+              } %>
         </td>
       </tr>
     <% end %>

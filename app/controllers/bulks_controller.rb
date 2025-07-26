@@ -7,7 +7,6 @@ class BulksController < ApplicationController
 
   def show
     @bulk = Bulk.find(params[:id])
-    # @charges = @bulk.charges
   end
 
   def new
@@ -44,7 +43,8 @@ class BulksController < ApplicationController
           return render :new, status: :unprocessable_entity
         end
 
-        # Process the file and create charges
+        # create charges
+        Charge.create_from_csv(@bulk.file, @bulk)
         # save file info in @bulk
         # render charges.import, starting the import process
 
@@ -53,6 +53,14 @@ class BulksController < ApplicationController
         redirect_to @bulk, notice: "Bulk import initiated. Processing will start shortly."
     else
       render :new
+    end
+  end
+  def destroy
+    @bulk = Bulk.find(params[:id])
+    if @bulk.destroy
+      redirect_to bulk_path, notice: "Bulk import deleted successfully."
+    else
+      redirect_to bulk_path, alert: "Failed to delete bulk import."
     end
   end
 
