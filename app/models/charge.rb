@@ -1,7 +1,8 @@
-require 'csv'
+require "csv"
 
 class Charge < ApplicationRecord
   belongs_to :bulk
+  after_destroy :decrement_bulk_charge_count
   enum status: { pending: 0, in_process: 1, completed: 2, failed: 3, refunded: 4 }
   validates :amount, presence: true
   validates :currency, presence: true
@@ -18,8 +19,12 @@ class Charge < ApplicationRecord
         amount: current_charge["charge_amount"].to_i,
         currency:  current_charge["charge_currency"].to_s,
       )
-      # start background job to process the charge -> get token and create charges
+      # TODO: start background job to process the charge -> get token and create charges
     end
   end
-end
 
+  private
+    def decrement_bulk_charge_count
+      bulk.decrement!(:amount_of_charges)
+    end
+end

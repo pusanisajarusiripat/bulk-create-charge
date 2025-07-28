@@ -22,5 +22,4 @@ class ChargesController < ApplicationController
       redirect_to charge_path, alert: "Failed to delete charge."
     end
   end
-
 end

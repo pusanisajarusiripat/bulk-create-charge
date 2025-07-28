@@ -64,7 +64,7 @@ class BulksController < ApplicationController
         return false
       end
 
-      unless ["text/csv", "application/csv", "text/plain"].include?(uploaded_file.content_type)
+      unless [ "text/csv", "application/csv", "text/plain" ].include?(uploaded_file.content_type)
         bulk.errors.add(:file, "must be a CSV file (e.g., .csv extension, or content type 'text/csv')")
         return false
       end
