@@ -15,7 +15,6 @@
     Create a `.env` file in the project root with the following content:
 
     ```
-    REDIS_URL=redis://redis.example.com:7372/0
     BULK_AUTH_USER=authuser
     BULK_AUTH_PASSWORD=yoursecret
     VAULT_URL=https://sample.api.vault.co
