@@ -5,7 +5,6 @@
 <table class="bulk-table">
   <thead>
     <tr>
-      <th>ID</th>
       <th>Charge Id</th>
       <th>Currency</th>
       <th>Amount</th>
@@ -17,7 +16,6 @@
   <tbody>
     <% @bulk.charges.each do |charge| %>
       <tr>
-        <td><%= charge.id %></td>
         <td><%= charge.charge_id %></td>
         <td><%= charge.currency %></td>
         <td><%= charge.amount %></td>
