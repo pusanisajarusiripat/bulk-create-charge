@@ -1,33 +1,53 @@
-# README
+### Prerequisites
+  * **Ruby**: Version 3.3.x
+  * **Rails**: Version 7.2.x
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Installation
 
-Things you may want to cover:
+1.  **Clone the repository:**
 
-* Ruby version
-- Rails (7.2)
-- Ruby (3.3)
+    ```bash
+    git clone https://github.com/pusanisajarusiripat/bulk-create-charge.git
+    cd bulk-create-charge
+    ```
+2. **Environment Variables**
 
-* Tools
-- Sidekiq for Background Job Processing
-- Minitest for Unit Testing
-- Fabrication for Unit Testing
+    Create a `.env` file in the project root with the following content:
 
+    ```
+    REDIS_URL=redis://redis.example.com:7372/0
+    BULK_AUTH_USER=authuser
+    BULK_AUTH_PASSWORD=yoursecret
+    VAULT_URL=https://sample.api.vault.co
+    URL=https://sample.api.url.co
+    P_KEY=pk_test_1234567890
+    S_KEY=sk_test_1234567890
+    ```
 
-<!-- * System dependencies
+3.  **Install dependencies:**
 
-* Configuration
+    ```bash
+    bundle install
+    ```
 
-* Database creation
+4.  **Set up the database:**
 
-* Database initialization
+    ```bash
+    rails db:create
+    rails db:migrate
+    rails db:seed
+    ```
 
-* How to run the test suite
+5.  **Start the Rails server:**
 
-* Services (job queues, cache servers, search engines, etc.)
+    ```bash
+    rails s
+    ```
 
-* Deployment instructions
+    The application should now be accessible at `http://localhost:3000`.
 
-* ... -->
+## Tools & Libraries
 
+  * **Sidekiq**: Used for efficient background job processing.
+  * **Minitest**: The testing framework for unit tests.
+  * **Fabrication**: A library for creating test data (fixtures/factories) in tests.
