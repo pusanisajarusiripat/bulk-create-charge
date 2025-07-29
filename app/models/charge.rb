@@ -16,19 +16,25 @@ class Charge < ApplicationRecord
       charge = Charge.create!(
         bulk_id: bulk.id,
         sub_merchant_id: current_charge["sub_merchant_id"].to_s,
-        amount: current_charge["charge_amount"].to_i,
+        amount: convert_amount(current_charge["charge_amount"].to_i),
         currency:  current_charge["charge_currency"].to_s,
       )
-      # TODO: start background job to process the charge -> get token and create charges
       puts "--------------------"
       puts "Charge created with ID: #{charge.id}"
       puts "Charge amount: #{charge.amount}"
-      ChargeJob.perform_now(current_charge, charge.id)
+      ChargeJob.perform_async(current_charge, charge.id)
     end
   end
+
 
   private
     def decrement_bulk_charge_count
       bulk.decrement!(:amount_of_charges)
+    end
+
+    def self.convert_amount(amount)
+      converted = amount.to_f / 100.0
+      puts "Converted amount: #{converted}"
+      converted
     end
 end
