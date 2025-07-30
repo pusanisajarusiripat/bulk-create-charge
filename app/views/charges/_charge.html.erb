@@ -1,0 +1,8 @@
+<tr id="charge_<%= charge.id %>">
+  <td><%= charge.charge_id %></td>
+  <td><%= charge.currency %></td>
+  <td><%= number_with_precision(charge.amount, precision: 2) %></td>
+  <td><%= charge.status %></td>
+  <td><%= charge.created_at.in_time_zone("Bangkok").strftime("%Y-%m-%d %H:%M") %></td>
+  <td><%= link_to "Show", charge_path(charge) %></td>
+</tr>
