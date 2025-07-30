@@ -34,7 +34,6 @@
     ```bash
     rails db:create
     rails db:migrate
-    rails db:seed
     ```
 
 5.  **Start the Rails server:**

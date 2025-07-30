@@ -2,6 +2,7 @@ class BulkStatusCheckJob
   include Sidekiq::Worker
 
   def perform(bulk_id)
+    Rails.logger.debug("Checking status for bulk ID: #{bulk_id}")
     bulk = Bulk.find(bulk_id)
     completed = bulk.charges.where(status: :completed).count
     failed = bulk.charges.where(status: :failed).count
