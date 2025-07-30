@@ -43,6 +43,6 @@ class SubMerchantsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("SubMerchant.count", -1) do
       delete sub_merchant_path(@sub_merchant)
     end
-    assert_redirected_to charge_path # You may want to check your redirect path
+    assert_redirected_to charge_path
   end
 end

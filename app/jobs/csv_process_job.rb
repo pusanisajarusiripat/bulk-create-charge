@@ -17,7 +17,6 @@ class CsvProcessJob
       Rails.logger.debug("Charge amount: #{charge.amount}")
       ChargeJob.perform_later(current_charge, charge.id)
     end
-    # Check the status of the bulk every 5 seconds
     BulkStatusCheckJob.perform_in(5.seconds, bulk_id)
   end
 

@@ -14,7 +14,6 @@ class BulkStatusCheckJob
       bulk.update!(status: :finished_with_error)
     else
       bulk.update!(status: :in_process)
-      # Schedule another check in 5 seconds
       BulkStatusCheckJob.perform_in(5.seconds, bulk_id)
     end
   end

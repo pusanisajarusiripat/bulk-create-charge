@@ -1,9 +1,6 @@
 require "faraday"
 
 class ChargeJob < ApplicationJob
-  # each charge will call this to create a charge
-  # in this we'll have to call to get the token first
-  # assign the token response to the charge
   def perform(charge, charge_id)
     current_charge = Charge.find(charge_id)
     token_response = create_token(charge)

@@ -30,14 +30,9 @@ class BulksController < ApplicationController
           @bulk.file.purge
           return render :new, status: :unprocessable_entity
         end
-
-        # create charges
         Charge.create_from_csv(@bulk.file, @bulk)
-        # render charges.import, starting the import process
-
         @bulk.update(amount_of_charges: row_count - 1)
-        # starting bg process
-        redirect_to @bulk, notice: "Bulk import initiated. Processing will start shortly."
+        redirect_to @bulk, notice: "Bulk importing..."
     else
       render :new
     end
