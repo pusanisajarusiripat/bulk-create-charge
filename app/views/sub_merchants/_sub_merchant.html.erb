@@ -1,0 +1,10 @@
+<tr id="_sub_merchant <%= sub_merchant.id %>">
+  <td><%= sub_merchant.id %></td>
+  <td><%= sub_merchant.name %></td>
+  <td><%= sub_merchant.city %></td>
+  <td>
+    <%= link_to "Show", sub_merchant_path(sub_merchant) %> |
+    <%= link_to "Edit", edit_sub_merchant_path(sub_merchant) %> |
+    <%= link_to "Delete", sub_merchant_path(sub_merchant), method: :delete, data: { confirm: "Are you sure?" } %>
+  </td>
+</tr>

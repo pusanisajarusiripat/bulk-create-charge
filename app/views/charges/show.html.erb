@@ -1,3 +1,24 @@
-<%= link_to "Back", "javascript:history.back()", class: "btn btn-secondary" %>
 <h1>Charge Details </h1>
 <h2>Charge Id: <%= @charge.charge_id %> </h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Charge Id</th>
+      <th>Currency</th>
+      <th>Amount</th>
+      <th>Status</th>
+      <th>Created At</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody id="charges">
+    <tr id="_charge_<%= @charge.id %>">
+      <td><%= @charge.charge_id %></td>
+      <td><%= @charge.currency %></td>
+      <td><%= @charge.amount %></td>
+      <td><%= @charge.status %></td>
+      <td><%= @charge.created_at %></td>
+      <td><%= link_to "View", charge_path(@charge), class: "btn btn-primary" %></td>
+    </tr>
+  </tbody>
+</table>

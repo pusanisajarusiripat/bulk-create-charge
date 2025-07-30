@@ -1,0 +1,16 @@
+<h1>Sub Merchants</h1>
+<%= link_to "Create new sub merchant", new_sub_merchant_path, class: "btn btn-secondary" %>
+
+<table class="table">
+  <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Action</th>
+    </tr>
+  </thead>
+  <tbody id="sub-merchant">
+    <%= render @sub_merchants %>
+  </tbody>
+</table>
