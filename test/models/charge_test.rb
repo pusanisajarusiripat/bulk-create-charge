@@ -1,7 +1,7 @@
 require "test_helper"
-include ActionDispatch::TestProcess
 
 class ChargeTest < ActiveSupport::TestCase
+  include ActionDispatch::TestProcess
   setup do
     @bulk = Bulk.create!(file: fixture_file_upload("bulk_create_test.csv", "text/csv"))
     @charge =  @bulk.charges.create!(amount: 1000.50, currency: "THB")
