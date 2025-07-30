@@ -4,6 +4,7 @@ include ActionDispatch::TestProcess
 class BulkTest < ActiveSupport::TestCase
   setup do
     @bulk = Bulk.create!(file: fixture_file_upload("bulk_create_test.csv", "text/csv"))
+    @charge =  @bulk.charges.create!(amount: 1000.50, currency: "THB")
   end
   test "should be valid" do
     bulk = Bulk.new
@@ -20,7 +21,6 @@ class BulkTest < ActiveSupport::TestCase
   end
 
   test "charges should be deleted if bulk is deleted" do
-    charge = @bulk.charges.create!(amount: 1000, currency: "THB")
     assert_difference("Charge.count", -1) do
       @bulk.destroy
     end
