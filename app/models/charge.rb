@@ -8,7 +8,7 @@ class Charge < ApplicationRecord
   validates :currency, presence: true
 
   def self.create_from_csv(file, bulk)
-    puts "Creating charges from CSV file: #{file} from bulk: #{bulk.id}"
+    Rails.logger.debug("Creating charges from CSV file: #{file} from bulk: #{bulk.id}")
     csv_data = file.download
     bulk.update!(status: :in_process)
     CsvProcessJob.perform_async(csv_data, bulk.id)

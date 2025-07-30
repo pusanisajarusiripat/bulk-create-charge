@@ -24,7 +24,7 @@ class BulksController < ApplicationController
     if @bulk.save
         @bulk.file.attach(uploaded_file)
         row_count = @bulk.file.blob.open { |file| file.each_line.count }
-        puts "row count: #{row_count}"
+        Rails.logger.debug("row count: #{row_count}")
         if row_count > 500
           @bulk.errors.add(:file, "cannot have more than 500 rows")
           @bulk.file.purge

@@ -6,12 +6,11 @@ class ChargeJob < ApplicationJob
   # assign the token response to the charge
   def perform(charge, charge_id)
     current_charge = Charge.find(charge_id)
-
     token_response = create_token(charge)
-    puts "token_id: #{token_response["id"]}"
+    Rails.logger.debug("token_id: #{token_response["id"]}")
     # then we can create the charge with that token
     charge_response = create_charge(token_response["id"], charge)
-    puts "paid_at: #{charge_response["paid_at"]}"
+    Rails.logger.debug("paid_at: #{charge_response["paid_at"]}")
     current_charge.update(token_API_response: token_response,
       charge_API_response: charge_response,
       capture_at: charge_response["paid_at"])
@@ -26,11 +25,11 @@ class ChargeJob < ApplicationJob
 
   def create_token(charge)
     if charge.nil? || charge.empty?
-      puts "Charge data is missing or empty. Cannot create token."
+      Rails.logger.debug("Charge data is missing or empty. Cannot create token.")
       return
     end
-    puts "-------------------------------------------"
-    puts "Creating token for charge: #{charge.inspect}"
+    Rails.logger.debug("-------------------------------------------")
+    Rails.logger.debug("Creating token for charge: #{charge.inspect}")
     begin
       card_params = {
         "card[name]":  charge["card_name"].to_s || "JOHN DOE",
@@ -47,34 +46,34 @@ class ChargeJob < ApplicationJob
         "Authorization" => "Basic #{Base64.strict_encode64("#{charge["pkey"] || ENV['P_KEY']}:")}"
       }
 
-      puts "Creating token with params: #{card_params}"
-      puts "Using headers: #{headers}"
+      Rails.logger.debug("Creating token with params: #{card_params}")
+      Rails.logger.debug("Using headers: #{headers}")
 
       response = Faraday.post("#{ENV['VAULT_URL']}/tokens",
         URI.encode_www_form(card_params),
         headers
       )
     rescue => e
-      puts "Exception during Vault API call: #{e.class} - #{e.message}"
-      puts e.backtrace
+      Rails.logger.debug("Exception during Vault API call: #{e.class} - #{e.message}")
+      Rails.logger.debug(e.backtrace)
     end
-    puts "-------------------------------------------"
-    puts "Vault API response status: #{response.status}"
+    Rails.logger.debug("-------------------------------------------")
+    Rails.logger.debug("Vault API response status: #{response.status}")
     if response.success?
-      puts "Token created successfully: #{response.body}"
+      Rails.logger.debug("Token created successfully: #{response.body}")
     else
-      puts "Failed to create token: #{response.status} - #{response.body}"
+      Rails.logger.debug("Failed to create token: #{response.status} - #{response.body}")
     end
     JSON.parse(response.body)
   end
 
   def create_charge(token, charge)
     if token.nil? || token.empty?
-      puts "Token is missing or empty. Cannot create charge."
+      Rails.logger.debug("Token is missing or empty. Cannot create charge.")
       return
     end
-    puts "---------------------------------------------------------"
-    puts "Creating charge with token: #{token} for charge: #{charge.inspect}"
+    Rails.logger.debug("---------------------------------------------------------")
+    Rails.logger.debug("Creating charge with token: #{token} for charge: #{charge.inspect}")
     begin
       charge_params = {
         "card": token,
@@ -87,23 +86,23 @@ class ChargeJob < ApplicationJob
         "Authorization" => "Basic #{Base64.strict_encode64("#{charge["skey"] || ENV['S_KEY']}:")}"
       }
 
-      puts "Creating charge with params: #{charge_params}"
-      puts "Using headers: #{headers}"
+      Rails.logger.debug("Creating charge with params: #{charge_params}")
+      Rails.logger.debug("Using headers: #{headers}")
 
       response = Faraday.post("#{ENV['URL']}/charges",
       URI.encode_www_form(charge_params),
       headers
       )
     rescue => e
-      puts "Exception during Vault API call: #{e.class} - #{e.message}"
-      puts e.backtrace
+      Rails.logger.debug("Exception during Vault API call: #{e.class} - #{e.message}")
+      Rails.logger.debug(e.backtrace)
     end
-    puts "---------------------------------------------------------"
-    puts "Charge API response status: #{response.status}"
+    Rails.logger.debug("---------------------------------------------------------")
+    Rails.logger.debug("Charge API response status: #{response.status}")
     if response.success?
-      puts "Charge created successfully: #{response.body}"
+      Rails.logger.debug("Charge created successfully: #{response.body}")
     else
-      puts "Failed to create charge: #{response.status} - #{response.body}"
+      Rails.logger.debug("Failed to create charge: #{response.status} - #{response.body}")
     end
     JSON.parse(response.body)
   end

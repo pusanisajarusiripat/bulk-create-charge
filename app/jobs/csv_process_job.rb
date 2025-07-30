@@ -12,9 +12,9 @@ class CsvProcessJob
         amount: convert_amount(current_charge["charge_amount"].to_i),
         currency:  current_charge["charge_currency"].to_s,
       )
-      puts "--------------------"
-      puts "Charge created with ID: #{charge.id}"
-      puts "Charge amount: #{charge.amount}"
+      Rails.logger.debug("--------------------")
+      Rails.logger.debug("Charge created with ID: #{charge.id}")
+      Rails.logger.debug("Charge amount: #{charge.amount}")
       ChargeJob.perform_later(current_charge, charge.id)
     end
     # Check the status of the bulk every 5 seconds
@@ -24,7 +24,7 @@ class CsvProcessJob
   private
     def convert_amount(amount)
     converted = amount.to_f / 100.0
-    puts "Converted amount: #{converted}"
+    Rails.logger.debug("Converted amount: #{converted}")
     converted
     end
 end
