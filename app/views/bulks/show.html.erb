@@ -13,17 +13,8 @@
       <th>Action</th>
     </tr>
   </thead>
-  <tbody>
-    <% @bulk.charges.each do |charge| %>
-      <tr>
-        <td><%= charge.charge_id %></td>
-        <td><%= charge.currency %></td>
-        <td><%= charge.amount %></td>
-        <td><%= charge.status %></td>
-        <td><%= charge.created_at.in_time_zone("Bangkok").strftime("%Y-%m-%d %H:%M") %></td>
-        <td><%= link_to "Show", charge_path(charge) %><br></td>
-      </tr>
-    <% end %>
+  <tbody id="charges">
+    <%= render @bulk.charges %>
   </tbody>
 </table>
 
