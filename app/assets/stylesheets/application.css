@@ -9,16 +9,16 @@
  * Consider organizing styles into separate files for maintainability.
  */
 
- .bulk-table th, .bulk-table td {
+ .table th, .table td {
   padding: 18px 24px;
   text-align: left;
 }
 
-.bulk-table tr {
+.table tr {
   border-bottom: 2px solid #eee;
 }
 
-.bulk-table {
+.table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 30px;

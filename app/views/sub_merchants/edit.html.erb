@@ -1,0 +1,17 @@
+<h1>Edit Submerchant</h1>
+
+<%= form_with(model: @sub_merchant) do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :city %><br>
+    <%= form.text_field :city, required: true %>
+  </div>
+
+    <div class="actions" style="margin-top: 30px;">
+    <%= form.submit "Update Submerchant" %>
+  </div>
+<% end %>
